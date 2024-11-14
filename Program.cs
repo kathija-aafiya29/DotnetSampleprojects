@@ -10,6 +10,10 @@ class Program
             Console.WriteLine("1. Hello World");
             Console.WriteLine("2. Simple Calculator");
             Console.WriteLine("3. Number Guessing Game");
+            Console.WriteLine("5. Factorial Calculator");
+            Console.WriteLine("6. Palindrome Checker");
+            Console.WriteLine("7. Fibonacci Sequence");
+            Console.WriteLine("8. Prime Number Checker");
             Console.WriteLine("4. Exit");
             Console.Write("Enter your choice: ");
 
@@ -25,6 +29,18 @@ class Program
                     break;
                 case 3:
                     NumberGuessingGame();
+                    break;
+                case 5:
+                    FactorialCalculator();
+                    break;
+                case 6:
+                    PalindromeChecker();
+                    break;
+                case 7:
+                    FibonacciSequence();
+                    break;
+                case 8:
+                    PrimeNumberChecker();
                     break;
                 case 4:
                     return; // Exit the program
@@ -102,4 +118,70 @@ class Program
             }
         }
     }
+    static void FactorialCalculator()
+    {
+        Console.Write("Enter a number to find its factorial: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+        long factorial = 1;
+
+        for (int i = 1; i <= number; i++)
+        {
+            factorial *= i;
+        }
+
+        Console.WriteLine($"Factorial of {number} is: {factorial}");
+    }
+    static void PalindromeChecker()
+    {
+        Console.Write("Enter a word or number to check if it's a palindrome: ");
+        string input = Console.ReadLine();
+        string reversed = new string(input.Reverse().ToArray());
+
+        if (input.Equals(reversed, StringComparison.OrdinalIgnoreCase))
+        {
+            Console.WriteLine($"{input} is a palindrome.");
+        }
+        else
+        {
+            Console.WriteLine($"{input} is not a palindrome.");
+        }
+    }
+    static void FibonacciSequence()
+    {
+        Console.Write("Enter the number of terms for the Fibonacci sequence: ");
+        int terms = Convert.ToInt32(Console.ReadLine());
+
+        int first = 0, second = 1, next;
+
+        Console.WriteLine("Fibonacci sequence:");
+        for (int i = 0; i < terms; i++)
+        {
+            Console.Write(first + " ");
+            next = first + second;
+            first = second;
+            second = next;
+        }
+        Console.WriteLine();
+    }
+    static void PrimeNumberChecker()
+    {
+        Console.Write("Enter a number to check if it's prime: ");
+        int number = Convert.ToInt32(Console.ReadLine());
+        bool isPrime = true;
+
+        if (number < 2)
+            isPrime = false;
+
+        for (int i = 2; i <= Math.Sqrt(number); i++)
+        {
+            if (number % i == 0)
+            {
+                isPrime = false;
+                break;
+            }
+        }
+
+        Console.WriteLine(isPrime ? $"{number} is a prime number." : $"{number} is not a prime number.");
+    }
+
 }
