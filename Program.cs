@@ -14,6 +14,8 @@ class Program
             Console.WriteLine("6. Palindrome Checker");
             Console.WriteLine("7. Fibonacci Sequence");
             Console.WriteLine("8. Prime Number Checker");
+            Console.WriteLine("9. ArraySORT and reverse");
+            Console.WriteLine("10. Array sum");
             Console.WriteLine("4. Exit");
             Console.Write("Enter your choice: ");
 
@@ -41,6 +43,18 @@ class Program
                     break;
                 case 8:
                     PrimeNumberChecker();
+                    break;
+                case 9:
+                    ArraySortReverse();
+                    break;
+                case 10:
+                    ArraySum();
+                    break;
+                case 11:
+                    ArrayOddEven();
+                    break;
+                case 12 :
+                    ArrrayDuplicateElements();
                     break;
                 case 4:
                     return; // Exit the program
@@ -182,6 +196,66 @@ class Program
         }
 
         Console.WriteLine(isPrime ? $"{number} is a prime number." : $"{number} is not a prime number.");
+    }
+    static void ArraySortReverse()
+    {
+        Console.WriteLine("enter array int values eg.9,8,10");
+        int[] numbers = Console.ReadLine().Split(",").Select(int.Parse).ToArray();
+
+        Array.Sort(numbers);    // Sorts the array
+        Array.Reverse(numbers); // Reverses the sorted array
+
+        Console.WriteLine("Sorted and Reversed Array: " + string.Join(", ", numbers));
+
+    }
+    static void ArraySum()
+    {
+        Console.WriteLine("enter array int values eg.9,8,10");
+        int[] numbers = Console.ReadLine().Split(",").Select(int.Parse).ToArray();
+        int sum = 0;
+        foreach (int num in numbers)
+        {
+            sum += num;
+        }
+
+        double average = (double)sum / numbers.Length;
+
+        Console.WriteLine("Sum of Array: " + sum);
+        Console.WriteLine("Average of Array: " + average);
+    }
+
+    static void  ArrayOddEven(){
+        Console.WriteLine("enter array int values eg.9,8,10");
+        int[] numbers = Console.ReadLine().Split(",").Select(int.Parse).ToArray();
+        
+        int evenCount = 0;
+        int oddCount = 0;
+        
+        foreach (int num in numbers)
+        {
+            if (num % 2 == 0) evenCount++;
+            else oddCount++;
+        }
+        
+        Console.WriteLine("Count of Even Numbers: " + evenCount);
+        Console.WriteLine("Count of Odd Numbers: " + oddCount);
+    }
+    static void ArrrayDuplicateElements(){
+        Console.WriteLine("enter array int values eg.9,8,10");
+        int[] numbers = Console.ReadLine().Split(",").Select(int.Parse).ToArray();
+        
+        HashSet<int> seenNumbers = new HashSet<int>();
+        HashSet<int> duplicates = new HashSet<int>();
+        
+        foreach (int num in numbers)
+        {
+            if (!seenNumbers.Add(num))
+            {
+                duplicates.Add(num);
+            }
+        }
+        
+        Console.WriteLine("Duplicate elements: " + string.Join(", ", duplicates));
     }
 
 }
